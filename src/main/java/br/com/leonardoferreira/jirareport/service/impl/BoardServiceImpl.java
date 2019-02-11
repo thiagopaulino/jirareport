@@ -122,7 +122,9 @@ public class BoardServiceImpl extends AbstractService implements BoardService {
     public Set<String> findStatusFromBoardInJira(final Board board) {
         log.info("Method=findStatusFromBoardInJira, board={}", board);
 
-        List<BoardStatusList> listStatusesBoard = projectClient.findStatusFromProject(currentToken(), board.getExternalId());
+        String externalIds = board.getExternalId();
+        String externalId = externalIds.split(",")[0];
+        List<BoardStatusList> listStatusesBoard = projectClient.findStatusFromProject(currentToken(), externalId);
 
         return listStatusesBoard.stream()
                 .map(BoardStatusList::getStatuses)
@@ -137,7 +139,9 @@ public class BoardServiceImpl extends AbstractService implements BoardService {
         log.info("Method=findToUpdate, id={}", id);
 
         Board board = findById(id);
-        JiraProject jiraProject = projectClient.findById(currentToken(), board.getExternalId());
+        String externalIds = board.getExternalId();
+        String externalId = externalIds.split(",")[0];
+        JiraProject jiraProject = projectClient.findById(currentToken(), externalId);
 
         return boardMapper.toForm(board, jiraProject);
     }

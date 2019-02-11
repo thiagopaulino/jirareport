@@ -33,7 +33,7 @@ public class Board extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long externalId;
+    private String externalId;
 
     private String name;
 

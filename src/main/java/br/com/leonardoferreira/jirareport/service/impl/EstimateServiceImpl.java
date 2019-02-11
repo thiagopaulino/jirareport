@@ -163,7 +163,7 @@ public class EstimateServiceImpl implements EstimateService {
 
         jql.append(" AND status IN ({fluxColumns}) ");
 
-        params.put("project", board.getExternalId().toString());
+        params.put("project", board.getExternalId());
         params.put("fluxColumns", fluxColumns);
 
         return StringUtil.replaceParams(jql.toString(), params);

@@ -20,9 +20,9 @@ public interface ProjectClient {
 
     @GetMapping("/rest/api/2/project/{projectId}/statuses")
     List<BoardStatusList> findStatusFromProject(@RequestHeader("Authorization") String token,
-                                                @PathVariable("projectId") Long projectId);
+                                                @PathVariable("projectId") String projectId);
 
     @GetMapping("/rest/api/2/project/{projectId}")
     JiraProject findById(@RequestHeader("Authorization") String token,
-                         @PathVariable("projectId") Long projectId);
+                         @PathVariable("projectId") String projectId);
 }
